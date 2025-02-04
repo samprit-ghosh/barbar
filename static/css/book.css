@@ -1,0 +1,130 @@
+/* <style> */
+    #flash-messages {
+    margin: 20px auto;
+    width: 80%;
+    text-align: center;
+}
+
+.alert {
+    padding: 15px;
+    background-color: #4CAF50;  /* Green */
+    color: white;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.alert-success {
+    background-color: #4CAF50;
+}
+
+.alert-error {
+    background-color: #f44336;  /* Red */
+}
+
+/* </style> */
+
+
+/* <style> */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.outer-apt {
+    background: url('https://gtkit.rometheme.pro/gentleman/wp-content/uploads/sites/21/2023/03/barber-shaving-man-in-chair-PPNU2NR.jpg') no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: fit-content;
+}
+
+.container-apt {
+    background: rgba(92, 76, 9, 0.8);
+    color: white;
+    border-radius: 15px;
+    padding: 30px;
+    width: 90%;
+    max-width: 100%;
+    display: flex;
+    margin-top: 4rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);margin-top: 5rem;
+}
+
+.form-section-apt {
+    flex: 1;
+    padding-right: 20px;
+}
+
+.form-section-apt h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #FFA726;
+}
+
+.form-section-apt input, .form-section-apt select, .form-section-apt textarea {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 8px;
+
+    margin-top: 1.5rem;
+}
+
+.form-section-apt input::placeholder, .form-section-apt textarea::placeholder {
+    color: #999;
+}
+
+.form-section-apt button {
+    width: 100%;
+    padding: 15px;
+    background-color: #FFA726;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 1.5rem;
+}
+
+.form-section-apt button:hover {
+    background-color: #FB8C00;
+}
+
+.image-section-apt {
+    flex: 1;
+    position: relative;
+}
+
+.image-section-apt img {
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .container-apt {
+        flex-direction: column;
+    }
+    .image-section-apt {
+        margin-top: 20px;
+    }
+}
+
+
+.dark-color{
+    background-color: #030303aa;
+          display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 4rem;
+    padding-top: 2.5rem;
+}
+/* </style> */

@@ -1,0 +1,215 @@
+
+{% extends 'layout.html' %} 
+{% block title %} {{title}} {% endblock title %} 
+{% block body %}
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+  
+<body style="background-color: rgb(11, 20, 52);">
+
+
+
+
+  <div class="unique-search-container">
+    <input type="text" id="searchInput" placeholder="Search by name...">
+  </div>
+
+  <div class="unique-table-container" >
+    <table class="unique-table" id="dataTable">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Phone</th>
+        <th>Category</th>
+    </tr>
+    {% for appointment in appointments %}
+    <tr>
+        <td>{{ appointment.id }}</td>
+        <td>{{ appointment.name }}</td>
+        <td>{{ appointment.email }}</td>
+        <td>{{ appointment.date }}</td>
+        <td>{{ appointment.time }}</td>
+        <td>{{ appointment.phone }}</td>
+        <td>{{ appointment.category }}</td>
+    </tr>
+    {% endfor %}
+     
+    </table>
+  </div>
+
+  <div class="unique-pagination" id="pagination"></div>
+
+  <div class="logout-container">
+   <a href="/admin/logout"> <button class="logout-button">Logout</button> </a>
+</div>
+
+
+
+
+  <div class="grid2x2">
+
+  <div class="chart-container-cat">
+    <h2 style="text-align:center;margin-bottom: 2rem; color: rgb(255, 255, 255);">Category-wise Appointments</h2>
+    <canvas id="categoryPieChart"></canvas>
+  </div>
+
+  <div class="chart-container-pie">
+    <h2 style="text-align:center;  margin-bottom: 6rem;color: rgb(255, 255, 255);">Month-wise Customer Bookings</h2>
+    <canvas id="monthlyBarChart"></canvas>
+  </div>
+</div>
+
+<br><br><br>
+  <script>
+    const rowsPerPage = 10;
+    let currentPage = 1;
+
+    const table = document.getElementById('dataTable');
+    const rows = table.querySelectorAll('tbody tr');
+    const totalPages = Math.ceil(rows.length / rowsPerPage);
+    const pagination = document.getElementById('pagination');
+
+    function displayRows() {
+      const start = (currentPage - 1) * rowsPerPage;
+      const end = start + rowsPerPage;
+
+      rows.forEach((row, index) => {
+        row.style.display = (index >= start && index < end) ? '' : 'none';
+      });
+    }
+
+    function setupPagination() {
+      pagination.innerHTML = '';
+
+      for (let i = 1; i <= totalPages; i++) {
+        const button = document.createElement('button');
+        button.innerText = i;
+        button.classList.add('unique-page-btn');
+        if (i === currentPage) button.classList.add('active');
+
+        button.addEventListener('click', () => {
+          currentPage = i;
+          displayRows();
+          setupPagination();
+        });
+
+        pagination.appendChild(button);
+      }
+    }
+
+    document.getElementById('searchInput').addEventListener('keyup', function() {
+      const searchValue = this.value.toLowerCase();
+
+      rows.forEach(row => {
+        const nameCell = row.cells[1].textContent.toLowerCase();
+        if (nameCell.includes(searchValue)) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    });
+
+    displayRows();
+    setupPagination();
+  </script>
+
+
+<script>
+  // Data passed from Flask to JavaScript
+  const categoryData = {{ category_data|tojson }};
+  const monthlyData = {{ monthly_data|tojson }};
+
+  // Category-wise Pie Chart with customized colors
+  const categoryCtx = document.getElementById('categoryPieChart').getContext('2d');
+  new Chart(categoryCtx, {
+    type: 'pie',
+    data: {
+      labels: categoryData.labels,
+      datasets: [{
+        label: 'Appointments by Category',
+        data: categoryData.data,
+        backgroundColor: [
+          '#FF4500', '#1E90FF', '#32CD32', '#FFD700', '#8A2BE2', '#FF69B4'
+        ],
+      }]
+    },
+    options: {
+      plugins: {
+        legend: {
+          labels: {
+            color: 'white'  // Change legend text color for pie chart
+          }
+        }
+      }
+    }
+  });
+
+  // Month-wise Bar Chart with customized axis and legend colors
+  const monthlyCtx = document.getElementById('monthlyBarChart').getContext('2d');
+  new Chart(monthlyCtx, {
+    type: 'bar',
+    data: {
+      labels: monthlyData.labels,
+      datasets: [{
+        label: 'Customer Bookings',
+        data: monthlyData.data,
+        backgroundColor: '#150580'  // Changed bar color to Tomato
+      }]
+    },
+    options: {
+      plugins: {
+        legend: {
+          labels: {
+            color: 'white'  // Change legend text color for bar chart
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: {
+            color: 'white'  // Change x-axis labels color
+          },
+          grid: {
+            color: 'red'   // Change x-axis grid line color
+          }
+        },
+        y: {
+          ticks: {
+            color: 'white'  // Change y-axis labels color
+          },
+          grid: {
+            color: 'yellow'   // Change y-axis grid line color
+          }
+        }
+      }
+    }
+  });
+</script>
+
+
+</body>
+
+
+</html>
+
+
+
+{% endblock body %}

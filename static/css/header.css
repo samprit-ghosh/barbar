@@ -1,0 +1,167 @@
+/* <style> */
+
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+html::-webkit-scrollbar {
+    width: 0.4rem;
+  }
+  
+  html::-webkit-scrollbar-track {
+    background: #000;
+  }
+  
+  html::-webkit-scrollbar-thumb {
+    background: #fff53c;
+  }
+  
+/* Apply smooth scrolling to the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+
+
+
+
+
+
+.logo {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+
+li {
+  list-style: none;
+}
+
+#header a {
+  text-decoration: none;
+  color: white;
+  font-family: sans-serif;
+  font-weight: 600;
+}
+
+#header a:hover {
+  color: orange;
+}
+
+#header {
+  position: fixed;
+  padding: 0 2rem;
+  width: 100%;
+  background-color: transparent;
+  z-index: 9999999999;
+
+}
+
+#header.scrolled {
+  background-color: #6b0c0c; /* Solid color */
+}
+
+.navbar {
+  display: flex;
+  width: 100%;
+  height: 80px;
+  max-width: 100%;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navbar .logo a {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.navbar .links {
+  width: 90%;
+
+  gap: 3rem;
+
+  /* background-color: #c22127; */
+  display: flex;
+  justify-content: right;
+  margin-right: 3rem;
+}
+
+.navbar .toggle_btn {
+  color: #fff;
+  cursor: pointer;
+  display: none;
+  font-size: 1.5rem;
+}
+
+.dropdown_menu {
+  display: none;
+  background-color: #6b0c0c;
+
+  /* background:grey;
+    backdrop-filter:blur(15px); */
+  /* top:60px; */
+  height: 0px;
+  width: 100%;
+
+  border-radius: 10px;
+  overflow: hidden;
+  transition: 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dropdown_menu li {
+  padding: 0.7rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.dropdown_menu.open {
+  height: 240px;
+}
+
+.dropdown_menu .action_btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 992px) {
+  .navbar .links,
+  .navbar .action_btn {
+    display: none;
+  }
+  .navbar .toggle_btn {
+    display: block;
+  }
+  .dropdown_menu {
+    display: block;
+    width: 100%;
+    z-index: 9999999999;
+  }
+
+  #header {
+    background-color: #6b0c0c;
+  }
+}
+
+@media (max-width: 576px) {
+  .dropdown_menu {
+    left: 2rem;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+/* </style> */

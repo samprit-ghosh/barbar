@@ -1,0 +1,213 @@
+
+
+<link rel="stylesheet" href="static/css/elementor-frontend-css.css">
+<link rel="stylesheet" href="static/css/elementor-post-3-css.css">
+<link rel="stylesheet" href="static/css/e-animations-css.css">
+<link rel="stylesheet" href="static/css/elementor-post-224-css.css">
+<link rel="stylesheet" href="static/css/ekit-widget-styles-css.css">
+
+<link rel="stylesheet" href="/static/css/login.css">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel='stylesheet' id='ekit-responsive-css'
+        href='https://gtkit.rometheme.pro/gentleman/wp-content/plugins/elementskit-lite/widgets/init/assets/css/responsive.css?ver=3.3.3'
+        media='all' />
+
+
+    <link rel='stylesheet' id='google-fonts-1-css'
+        href='https://fonts.googleapis.com/css?family=Maven+Pro%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CRosarivo%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CMulish%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic%7CAlegreya+Sans+SC%3A100%2C100italic%2C200%2C200italic%2C300%2C300italic%2C400%2C400italic%2C500%2C500italic%2C600%2C600italic%2C700%2C700italic%2C800%2C800italic%2C900%2C900italic&#038;display=auto&#038;ver=6.7.1'
+        media='all' />
+        <link rel="stylesheet" href="/static/css/admin.css">
+
+    <link rel="stylesheet" href="/static/css/header.css">
+
+    <link rel="stylesheet" href="/static/css/book.css">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin>
+
+
+
+
+
+
+
+
+<header id="header">
+    <div class="navbar">
+      <div class="logo"><a href="/"><img src="https://hopetrustindia.com/wp-content/uploads/2024/10/Bet-on-Yourself.jpg" alt="logo" srcset="" class="logo"></a></div>
+      <ul class="links">
+        <li><a href="/">Home</a></li>
+        <li><a href="/#about">About</a></li>
+        <li><a href="/#services">Services</a></li>
+        <li><a href="/admin">Admin</a></li>
+      </ul>
+  
+      <div class="toggle_btn">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+    </div>
+    <div class="dropdown_menu">
+      <li><a href="/">Home</a></li>
+      <li><a href="/#about">About</a></li>
+      <li><a href="/#services">Services</a></li>
+      <li><a href="/admin">Admin</a></li>
+      <li><a href="/book" class="action_btn">Get Started</a></li>
+    </div>
+  </header>
+
+
+<script>
+    const toggleBtn = document.querySelector(".toggle_btn");
+const toggleBtnIcon = document.querySelector(".toggle_btn i");
+const dropDownMenu = document.querySelector(".dropdown_menu");
+
+toggleBtn.onclick = function () {
+  dropDownMenu.classList.toggle("open");
+  const isOpen = dropDownMenu.classList.contains("open");
+
+  toggleBtnIcon.classList = isOpen ? "fa-solid fa-xmark" : "fa-solid fa-bars";
+};
+
+window.addEventListener("scroll", function () {
+  const header = document.getElementById("header");
+  if (window.scrollY > 50) {
+    header.classList.add("scrolled");
+  } else {
+    header.classList.remove("scrolled");
+  }
+});
+
+
+</script>
+
+
+
+
+{% block body %}
+
+{% endblock body %}
+
+
+
+<footer>
+    <section class="footer-section">
+      <div class="footer-container">
+        <div class="footer-logo">
+          <img src="https://gtkit.rometheme.pro/gentleman/wp-content/uploads/sites/21/2023/03/Hero-Logo-4.png" alt="Logo">
+        </div>
+  
+        <nav class="footer-nav">
+          <ul>
+            <li><a href="/">Homepage</a></li>
+            <li><a href="/#about">About Us</a></li>
+            <li><a href="/#services">Services</a></li>
+            <li><a href="/">Gallery</a></li>
+            
+            <li><a href="/book">Contact Us</a></li>
+          </ul>
+        </nav>
+  
+        <div class="footer-description">
+          <p>Morbi consequat dolor vehicula elementum sodales. In hac habitasse platea dictumst. Cras euismod mi sit amet eros auctor.</p>
+        </div>
+  
+        <div class="footer-social">
+          <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+        </div>
+  
+        <div class="footer-divider"></div>
+        <p class="footer-copyright">Copyright 2023 © All Rights Reserved | Design by Rometheme</p>
+      </div>
+    </section>
+  </footer>
+  
+  <style>
+    .footer-section {
+      background: #222;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+  
+    .footer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+    }
+  
+    .footer-logo img {
+      max-width: 150px;
+      height: auto;
+    }
+  
+    .footer-nav ul {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      gap: 15px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  
+    .footer-nav a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+  
+    .footer-nav a:hover {
+      color: #00bcd4;
+    }
+  
+    .footer-description {
+      max-width: 500px;
+      font-size: 14px;
+    }
+  
+    .footer-social a {
+      margin: 0 10px;
+      color: #fff;
+      font-size: 20px;
+      transition: transform 0.3s, color 0.3s;
+    }
+  
+    .footer-social a:hover {
+      transform: scale(1.2);
+      color: #00bcd4;
+    }
+  
+    .footer-divider {
+      width: 80%;
+      height: 1px;
+      background: #555;
+      margin: 10px 0;
+    }
+  
+    .footer-copyright {
+      font-size: 12px;
+      color: #aaa;
+    }
+  
+    @media (min-width: 600px) {
+      .footer-container {
+        flex-direction: row;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+  
+      .footer-nav ul {
+        gap: 20px;
+      }
+  
+      .footer-description {
+        text-align: left;
+      }
+    }
+  </style>

@@ -1,0 +1,130 @@
+
+{% extends 'layout.html' %} 
+{% block title %} {{title}} {% endblock title %} 
+{% block body %}
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barber Appointment</title>
+
+</head>
+<body>
+
+
+
+    <div>
+
+
+        <!-- <div>
+            <ul class="list unstyled">
+                <li><a href="#" onclick="Alert.success('Success! This alert box indicates a successful or positive action. ','Success',{displayDuration: 3000, pos: 'top'})">Success Alert</a></li>
+               
+              </ul>
+        
+        </div> -->
+        
+    
+
+    
+    <div class="outer-apt">
+        
+        <div class="dark-color">
+
+            
+            <div class="container-apt">
+
+
+
+            <div class="form-section-apt">
+                <form method="POST">
+                <h2>Apply For Barber Appointment</h2>
+                <input type="text" placeholder="Your Full Name" name="name" required>
+                <input type="email" placeholder="Email Address" name="email" required>
+                <input type="tel" placeholder="Phone Number" pattern="[0-9]{10}" maxlength="10" name="phone" required>
+                <input type="date" placeholder="dd/mm/yyyy" name="date"id="dateInput" required>
+                <input type="time" placeholder="dd/mm/yyyy" name="time"id="timeInput" required>
+                <select name="category" required>
+                    <option >Select Category Service</option>
+                    <option>Haircut</option>
+                    <option>Shave</option>
+                    <option>Beard Trim</option>
+                </select>
+                <select>
+                    <option>Number of Person</option>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                </select>
+             
+                <button onsubmit="Alert.success('Success! This alert box indicates a successful or positive action. ','Success',{displayDuration: 3000, pos: 'top'})">Appointment Now</button>
+            </form>
+            </div>
+     
+
+
+                <div class="image-section-apt">
+                    <img src="https://images.unsplash.com/photo-1588702547923-7093a6c3ba33" alt="Barber">
+                </div>
+            </div>
+        </div>
+  
+</div>
+
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+  <div id="flash-messages">
+    {% for message in messages %}
+      <div class="alert alert-success">
+        {{ message }}
+      </div>
+    {% endfor %}
+  </div>
+{% endif %}
+{% endwith %}
+
+</body>
+</html>
+
+
+
+
+<script>
+        // Auto-hide flash messages after 3 seconds
+        setTimeout(function() {
+        const flashMessages = document.getElementById('flash-messages');
+        if (flashMessages) {
+            flashMessages.style.display = 'none';
+        }
+    });
+</script>
+
+    <script>
+        // Fallback JavaScript to ensure the picker opens when clicking the input
+        const dateInput = document.getElementById('dateInput');
+        const timeInput = document.getElementById('timeInput');
+
+        dateInput.addEventListener('click', () => {
+            if (dateInput.showPicker) {
+                dateInput.showPicker();  // Supported in modern browsers
+            }
+        });
+
+        timeInput.addEventListener('click', () => {
+            if (timeInput.showPicker) {
+                timeInput.showPicker();  // Supported in modern browsers
+            }
+        });
+    </script>
+
+
+
+{% endblock body %}
+
+
+
