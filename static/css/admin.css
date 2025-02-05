@@ -1,22 +1,11 @@
-/* General Styles for Charts */
-.chart-container-cat {
-    background-color: rgba(237, 165, 9, 0.321);
-    height: 500px;
-    width: 200px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
-.chart-container-pie {
-    background-color: rgba(237, 165, 9, 0.321);
-    height: 500px;
-    width: 300px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
+
+
+
+
+
+/* General Styles for Charts */
+
 
 /* Grid Layout */
 .grid2x2 {
@@ -40,10 +29,10 @@
 }
 
 /* Chart Sizing */
-#categoryPieChart {
+/* #categoryPieChart {
     height: 300px;
     zoom: 80%;
-}
+} */
 
 /* Adjust margin for Price Distribution */
 .Price-Distribution {
@@ -51,28 +40,10 @@
 }
 
 /* Table Styles */
-.unique-table-container {
-    width: 80%;
-    margin: 0 auto;
-    border-collapse: collapse;
-}
 
-.unique-table {
-    width: 100%;
-    border: 1px solid #ddd;
-}
 
-.unique-table th, .unique-table td {
-    border: 1px solid #ddd;
-    padding: 8px;
-    text-align: center;
-    color: #ddd;
-}
 
-.unique-table th {
-    background-color: #10957f;
-    color: black;
-}
+
 
 /* Pagination Styling */
 .unique-pagination {
@@ -155,30 +126,42 @@
         font-size: 14px;
     }
 
-    .unique-search-container {
-        padding-top: 80px; /* Adjust padding for smaller screens */
-    }
+    /* .unique-search-container {
+        padding-top: 80px; 
+        
+    } */
 
     .unique-search-container input {
         width: 90%;
     }
 }
 
-@media (max-width: 350px) {
-    .unique-table-container {
-        width: 100%;
-        padding: 10px;
-    }
 
-    .unique-pagination button {
-        padding: 6px 10px;
-        font-size: 12px;
-    }
 
-    #categoryPieChart {
-        height: 180px;
+
+
+
+
+    .chart-container-cat {
+        background-color: rgba(237, 165, 9, 0.321);
+        height: 300px;
+        width: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
-}
+    
+    .chart-container-pie {
+        background-color: rgba(237, 165, 9, 0.321);
+        height: 300px;
+        width: 200px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+    
+
 
 
 

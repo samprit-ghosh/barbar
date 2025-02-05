@@ -28,33 +28,136 @@
     <input type="text" id="searchInput" placeholder="Search by name...">
   </div>
 
-  <div class="unique-table-container" >
-    <table class="unique-table" id="dataTable">
+  <table>
+    <caption>Appoinntment Dashboard</caption>
+    <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Phone</th>
+          <th>Category</th>
+           <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for appointment in appointments %}
       <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Date</th>
-        <th>Time</th>
-        <th>Phone</th>
-        <th>Category</th>
-    </tr>
-    {% for appointment in appointments %}
-    <tr>
-        <td>{{ appointment.id }}</td>
-        <td>{{ appointment.name }}</td>
-        <td>{{ appointment.email }}</td>
-        <td>{{ appointment.date }}</td>
-        <td>{{ appointment.time }}</td>
-        <td>{{ appointment.phone }}</td>
-        <td>{{ appointment.category }}</td>
-    </tr>
-    {% endfor %}
-     
-    </table>
-  </div>
+        <td data-label="id">{{ appointment.id }}</td>
+        <td data-label="Name">{{ appointment.name }}</td>
+        <td data-label="Email">{{ appointment.email }}</td>
+        <td data-label="Date">{{ appointment.date }}</td>
+        <td data-label="Time">{{ appointment.time }}</td>
+        <td data-label="Phone">{{ appointment.phone }}</td>
+        <td data-label="Category">{{ appointment.category }}</td>
+        <td data-label="Action">
+          <!-- Delete Button Form -->
+          <form action="{{ url_for('delete_appointment', appointment_id=appointment.id) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this appointment?');">
+            <button type="submit" style="background-color: red; color: white; border: none; padding: 5px 10px; cursor: pointer;">Delete</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+  <style type="text/css" media="all">
+    
+    table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 20px;
+    justify-self: center;
+    width: 80%;
+  /*   table-layout: fixed; */
+  }
+  
+  table caption {
+    font-size: 1.5em;
+    margin: .5em 0 .75em;
+    color: #ddd;
+  }
+  
+  table tr {
+    background-color: rgba(185, 23, 23, 0.321);
+    color: white;
+    border: 1px solid #ddd;
+    padding: .35em;
+  }
+  
+  table th,
+  table td {
+    padding: .625em;
+    text-align: center;
 
-  <div class="unique-pagination" id="pagination"></div>
+  }
+  
+  table th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    color: #ffa008;
+    text-transform: uppercase;
+  }
+  
+  @media screen and (max-width: 800px) {
+    table {
+      border: 0;
+    }
+  
+    table caption {
+      font-size: 1.3em;
+    }
+    
+    table thead {
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+    
+    table tr {
+      border-bottom: 3px solid #ddd;
+      display: block;
+      margin-bottom: .625em;
+    }
+    
+    table td {
+      border-bottom: 1px solid #ddd;
+      display: block;
+      font-size: .8em;
+      text-align: right;
+    }
+    
+    table td::before {
+      /*
+      * aria-label has no advantage, it won't be read inside a table
+      content: attr(aria-label);
+      */
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    
+    table td:last-child {
+      border-bottom: 0;
+    }
+  }
+
+
+
+  
+  
+  </style>
+
+<div class="unique-pagination" id="pagination"></div>
 
   <div class="logout-container">
    <a href="/admin/logout"> <button class="logout-button">Logout</button> </a>
@@ -66,15 +169,102 @@
   <div class="grid2x2">
 
   <div class="chart-container-cat">
-    <h2 style="text-align:center;margin-bottom: 2rem; color: rgb(255, 255, 255);">Category-wise Appointments</h2>
+    <h2 style="text-align:center;" class="Category-wise-appointments">Category-wise Appointments</h2>
     <canvas id="categoryPieChart"></canvas>
   </div>
 
   <div class="chart-container-pie">
-    <h2 style="text-align:center;  margin-bottom: 6rem;color: rgb(255, 255, 255);">Month-wise Customer Bookings</h2>
-    <canvas id="monthlyBarChart"></canvas>
+    <h2 style="text-align:center;" class="Month-wise-Customer-Bookings">Month-wise Customer Bookings</h2>
+    <canvas id="monthlyBarChart" height="200px"></canvas>
   </div>
 </div>
+
+<style>
+  .Category-wise-appointments{
+
+    margin-bottom: 4rem;
+  }
+
+  .Month-wise-Customer-Bookings{
+    margin-bottom: 2.5em;
+  }
+
+
+  .chart-container-cat {
+    background-color: rgba(185, 23, 23, 0.321);
+    height: 600px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: white;
+
+}
+
+#categoryPieChart{
+  zoom:80%;
+
+}
+
+.chart-container-pie {
+    background-color: rgba(185, 23, 23, 0.321);
+    height: 600px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: white;
+}
+
+@media(max-width:550px){
+
+.chart-container-cat {
+/* background-color: rgb(28, 23, 10); */
+height:fit-content ;
+width: 200px;
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 20px;
+color: white;
+
+}
+
+
+
+.chart-container-pie {
+
+height: fit-content;
+width: 200px;
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 20px;
+color: white;
+}
+
+.Category-wise-appointments{
+
+margin-bottom: 4rem;
+font-size: 20px;
+}
+
+.Month-wise-Customer-Bookings{
+margin-bottom: 2.5em;
+font-size: 20px;
+}
+
+
+
+
+}
+
+
+
+
+</style>
 
 <br><br><br>
   <script>
@@ -171,7 +361,8 @@
       datasets: [{
         label: 'Customer Bookings',
         data: monthlyData.data,
-        backgroundColor: '#150580'  // Changed bar color to Tomato
+        backgroundColor: '#150580',
+        innerHeight:600,  // Changed bar color to Tomato
       }]
     },
     options: {

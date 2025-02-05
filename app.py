@@ -3,10 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_mail import Mail, Message
 from datetime import datetime
 from werkzeug.security import generate_password_hash, check_password_hash
-import os
 from collections import Counter
-from flask import jsonify
-
 
 # Initialize Flask app
 app = Flask(__name__)
@@ -14,15 +11,9 @@ app = Flask(__name__)
 # Configuration
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///appointments.db'  # SQLite database
 app.config['SECRET_KEY'] = 'your_secret_key'  # Secret key for session management
-# app.config['MAIL_SERVER'] = 'smtp.example.com'  # SMTP server for sending emails
-# app.config['MAIL_PORT'] = 587  # SMTP port
-# app.config['MAIL_USE_TLS'] = True  # Use TLS for secure email
-# app.config['MAIL_USERNAME'] = 'your_email@example.com'  # Your email address
-# app.config['MAIL_PASSWORD'] = 'your_email_password'  # Your email password
 
 # Initialize extensions
 db = SQLAlchemy(app)
-# mail = Mail(app)
 
 # Define the Appointment model
 class Appointment(db.Model):
@@ -33,9 +24,6 @@ class Appointment(db.Model):
     date = db.Column(db.DateTime, nullable=False)
     category = db.Column(db.String(80), nullable=False)
     time = db.Column(db.String(80), nullable=False)
-
-    # with app.app_context():
-    #  db.create_all()
 
     def __repr__(self):
         return f'<Appointment {self.name}>'
@@ -54,10 +42,7 @@ class User(db.Model):
 
 # Create the database tables
 with app.app_context():
-
     db.create_all()  # Create tables with the new schema
-
-
 
     # Create a default admin user if it doesn't exist
     if not User.query.filter_by(username='admin').first():
@@ -82,14 +67,9 @@ def book():
         time = request.form['time']
 
         # Create a new appointment
-        new_appointment = Appointment(name=name, email=email, date=date, time=time,phone=phone,category=category)
+        new_appointment = Appointment(name=name, email=email, date=date, time=time, phone=phone, category=category)
         db.session.add(new_appointment)
         db.session.commit()
-
-        # Send email to admin
-        msg = Message('New Appointment Booking', sender='your_email@example.com', recipients=['admin@example.com'])
-        msg.body = f'You have a new appointment booking from {name} ({email}) on {date} at {time}.'
-        # mail.send(msg)
 
         flash('Appointment booked successfully!')
         return redirect(url_for('book'))
@@ -151,7 +131,23 @@ def admin():
     return render_template('admin.html', appointments=appointments, 
                            category_data=category_data, monthly_data=monthly_data)
 
+# Route to delete an appointment
+@app.route('/admin/delete/<int:appointment_id>', methods=['POST'])
+def delete_appointment(appointment_id):
+    if not session.get('admin_logged_in'):
+        flash('Please log in to access the admin panel.')
+        return redirect(url_for('admin_login'))
+
+    # Query the appointment by ID
+    appointment_to_delete = Appointment.query.get_or_404(appointment_id)
+
+    # Delete the appointment from the database
+    db.session.delete(appointment_to_delete)
+    db.session.commit()
+
+    flash(f'Appointment with ID {appointment_id} has been deleted.')
+    return redirect(url_for('admin'))
+
 # Run the application
 if __name__ == '__main__':
-   
     app.run(debug=True)

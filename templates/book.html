@@ -44,11 +44,11 @@
             <div class="form-section-apt">
                 <form method="POST">
                 <h2>Apply For Barber Appointment</h2>
-                <input type="text" placeholder="Your Full Name" name="name" required>
-                <input type="email" placeholder="Email Address" name="email" required>
-                <input type="tel" placeholder="Phone Number" pattern="[0-9]{10}" maxlength="10" name="phone" required>
-                <input type="date" placeholder="dd/mm/yyyy" name="date"id="dateInput" required>
-                <input type="time" placeholder="dd/mm/yyyy" name="time"id="timeInput" required>
+                <input type="text" placeholder="Your Full Name" name="name" required class="lowercase">
+                <input type="email" placeholder="Email Address" name="email" required class="lowercase">
+                <input type="tel" placeholder="Phone Number" pattern="[0-9]{10}" maxlength="10" name="phone" required class="lowercase">
+                <input type="date" placeholder="dd/mm/yyyy" name="date"id="dateInput" required class="lowercase">
+                <input type="time" placeholder="dd/mm/yyyy" name="time"id="timeInput" required class="lowercase">
                 <select name="category" required>
                     <option >Select Category Service</option>
                     <option>Haircut</option>
@@ -92,7 +92,13 @@
 </html>
 
 
-
+<script>
+    document.querySelectorAll('.lowercase').forEach(input => {
+      input.addEventListener('input', function() {
+        this.value = this.value.toLowerCase();
+      });
+    });
+  </script>
 
 <script>
         // Auto-hide flash messages after 3 seconds
